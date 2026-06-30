@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   selenium-test:
@@ -28,4 +25,4 @@ jobs:
 
       - name: Run Selenium Test
         run: |
-          python tests/login_test.py
+          python login_test.py
