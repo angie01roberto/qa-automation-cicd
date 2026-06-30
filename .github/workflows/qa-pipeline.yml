@@ -2,21 +2,25 @@ name: QA Automation Pipeline
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   selenium-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.14"
+          python-version: "3.12"
+
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable || true
 
       - name: Install Dependencies
         run: |
@@ -24,5 +28,4 @@ jobs:
           pip install selenium
 
       - name: Run Selenium Test
-        run: |
-          python tests/login_test.py
+        run: python tests/login_test.py
