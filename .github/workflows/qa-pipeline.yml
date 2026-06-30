@@ -25,4 +25,4 @@ jobs:
 
       - name: Run Selenium Test
         run: |
-          python login_test.py
+          python tests/login_test.py
